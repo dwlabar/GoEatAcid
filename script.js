@@ -1,3 +1,45 @@
+/**
+ * Fun and Soothing Animation Grid Toy
+ * 
+ * Description:
+ * This script creates an interactive grid of squares that animate when the 
+ * user hovers or touches them.
+ * 
+ * It is designed to work seamlessly on both desktop and mobile devices, 
+ * providing a fun and relaxing
+ * experience. Users can tap and drag across the screen to trigger animations, 
+ * making it both engaging and soothing.
+ * 
+ * Features:
+ * - Dynamically generates a grid of squares based on the viewport size.
+ * - Squares animate with a color and scale transformation when hovered or 
+ *   touched.
+ * - Supports touch interactions for mobile devices, including drag
+ *   functionality.
+ * - Responsive design that recalculates the grid on window resize.
+ * 
+ * Technologies Used:
+ * - Vanilla JavaScript for DOM manipulation and event handling.
+ * - GSAP (GreenSock Animation Platform) for smooth animations.
+ * 
+ * Author: BLAMZAGOW
+ * Date: 2024 - Year of the Void
+ * 
+ * Instructions:
+ * 1. Include GSAP library in your HTML file.
+ * 2. Ensure there is a container element with the class 'grid' in your HTML.
+ * 3. Optionally, include a header element (e.g., <h1>) to account for its
+ *    height in the layout.
+ * 
+ * Example Usage:
+ * <body>
+ *   <h1>Interactive Animation Grid</h1>
+ *   <div class="grid"></div>
+ *   <script src="path/to/gsap.min.js"></script>
+ *   <script src="path/to/this-script.js"></script>
+ * </body>
+ */
+
 document.addEventListener('DOMContentLoaded', () => {
   const grid = document.querySelector('.grid');
   const headerHeight = document.querySelector('h1').offsetHeight;
