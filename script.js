@@ -47,12 +47,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const viewportHeight = window.innerHeight - headerHeight;
 
   const squareSize = Math.min(viewportWidth / 20, viewportHeight / 20);
-
   const numColumns = Math.floor(viewportWidth / squareSize);
   const numRows = Math.floor(viewportHeight / squareSize);
 
   grid.style.gridTemplateColumns = `repeat(${numColumns}, 1fr)`;
   grid.style.gridTemplateRows = `repeat(${numRows}, 1fr)`;
+
+  let activatedBlocks = parseInt(localStorage.getItem('activatedBlocks')) || 0;
+
+  const counterDisplay = document.querySelector('.counter-display');
+  counterDisplay.textContent = activatedBlocks;
+
+  const updateCounter = () => {
+    activatedBlocks += 1;
+    localStorage.setItem('activatedBlocks', activatedBlocks);
+    counterDisplay.textContent = activatedBlocks;
+  };
 
   for (let i = 0; i < numColumns * numRows; i++) {
     const square = document.createElement('div');
@@ -63,7 +73,10 @@ document.addEventListener('DOMContentLoaded', () => {
     tl.to(square, { duration: 3, scale: -1.1, backgroundColor: '#e74c3c', ease: 'power1.inOut' });
     tl.to(square, { duration: 3, scale: 1, backgroundColor: '#3498db', ease: 'power1.inOut' });
 
-    const triggerAnimation = () => tl.restart();
+    const triggerAnimation = () => {
+      tl.restart();
+      updateCounter();
+    };
 
     square.addEventListener('mouseenter', triggerAnimation);
     square.addEventListener('touchstart', (e) => {
@@ -82,6 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
       tl.to(touchedElement, { duration: 3, scale: -1.1, backgroundColor: '#e74c3c', ease: 'power1.inOut' });
       tl.to(touchedElement, { duration: 3, scale: 1, backgroundColor: '#3498db', ease: 'power1.inOut' });
       tl.restart();
+      updateCounter();
     }
   });
 });
@@ -94,7 +108,6 @@ window.addEventListener('resize', () => {
   const viewportHeight = window.innerHeight - headerHeight;
 
   const squareSize = Math.min(viewportWidth / 20, viewportHeight / 20);
-
   const numColumns = Math.floor(viewportWidth / squareSize);
   const numRows = Math.floor(viewportHeight / squareSize);
 
@@ -110,7 +123,10 @@ window.addEventListener('resize', () => {
     tl.to(square, { duration: 3, scale: -1.1, backgroundColor: '#e74c3c', ease: 'power1.inOut' });
     tl.to(square, { duration: 3, scale: 1, backgroundColor: '#3498db', ease: 'power1.inOut' });
 
-    const triggerAnimation = () => tl.restart();
+    const triggerAnimation = () => {
+      tl.restart();
+      updateCounter();
+    };
 
     square.addEventListener('mouseenter', triggerAnimation);
     square.addEventListener('touchstart', (e) => {
@@ -129,6 +145,7 @@ window.addEventListener('resize', () => {
       tl.to(touchedElement, { duration: 3, scale: -1.1, backgroundColor: '#e74c3c', ease: 'power1.inOut' });
       tl.to(touchedElement, { duration: 3, scale: 1, backgroundColor: '#3498db', ease: 'power1.inOut' });
       tl.restart();
+      updateCounter();
     }
   });
 });
