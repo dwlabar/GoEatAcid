@@ -62,6 +62,9 @@ document.addEventListener('DOMContentLoaded', () => {
     activatedBlocks += 1;
     localStorage.setItem('activatedBlocks', activatedBlocks);
     counterDisplay.textContent = activatedBlocks;
+
+    // Add subtle effect on text change
+    gsap.fromTo(counterDisplay, { scale: 1.1, color: "#f00" }, { duration: 0.5, scale: 1, color: "#ffffff", ease: "power1.out" });
   };
 
   for (let i = 0; i < numColumns * numRows; i++) {
